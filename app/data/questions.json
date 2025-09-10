@@ -1,0 +1,752 @@
+[
+  {
+    "question": "The metric `node_cpu_temp_celcius` reports the current temperature of a node's CPU in Celsius. What query will return the average temperature across all CPUs on a per-node basis?",
+    "choices": [
+      "avg by(instance) (node_cpu_temp_celsius)",
+      "avg(node_cpu_temp_celsius)",
+      "sum by(instance) (node_cpu_temp_celsius)",
+      "mean(node_cpu_temp_celsius)"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What method does Prometheus use to collect metrics from targets?",
+    "choices": ["push", "pull", "stream", "rpc"],
+    "correct": 1
+  },
+  {
+    "question": "Based on the Alertmanager config, how long will you need to wait to see an alert again after it's triggered?",
+    "choices": ["10s", "5m", "4h", "12h"],
+    "correct": 2
+  },
+  {
+    "question": "Which query will get all time series for metric `node_disk_read_bytes_total` for job=web and job=node?",
+    "choices": [
+      "node_disk_read_bytes_total{job=\"web,node\"}",
+      "node_disk_read_bytes_total{job=~\"web|node\"}",
+      "node_disk_read_bytes_total{job in (web,node)}",
+      "node_disk_read_bytes_total{job!~\"web|node\"}"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What type of database does Prometheus use?",
+    "choices": ["Relational", "Document", "Time Series", "Graph"],
+    "correct": 2
+  },
+  {
+    "question": "Given the alertmanager config and generated alerts, how many total notifications are sent out?",
+    "choices": ["2", "3", "4", "5"],
+    "correct": 1
+  },
+  {
+    "question": "What is the Prometheus client library used for?",
+    "choices": [
+      "Serving metrics over HTTP only",
+      "Instrumenting apps and pushing to Pushgateway",
+      "Managing Alertmanager configs",
+      "Discovering scrape targets"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "For a file upload SLO (97% within 30s), which histogram bucket configuration is recommended?",
+    "choices": [
+      "[5, 10, 20]",
+      "[10, 25, 27, 30, 32, 35, 49, 50]",
+      "[10, 20, 30, 40]",
+      "[30, 60, 120]"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which of the following is NOT a valid method for reloading Alertmanager configuration?",
+    "choices": [
+      "SIGHUP",
+      "POST to /-/reload",
+      "Reload button in UI",
+      "Restart Alertmanager"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Which two labels are assigned to every metric by default?",
+    "choices": [
+      "instance, job",
+      "env, instance",
+      "job, service",
+      "host, service"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What configuration will prevent Prometheus from scraping targets with label team: frontend?",
+    "choices": [
+      "relabel_configs drop source_labels team regex frontend",
+      "metric_relabel_configs drop source_labels team regex frontend",
+      "relabel_configs drop match team frontend",
+      "relabel_configs drop source_labels frontend regex team"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Where should alerting rules be defined?",
+    "choices": [
+      "In prometheus.yml",
+      "Inline with scrape_configs",
+      "Separate rules file",
+      "In alertmanager.yml"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Which query gives the 99% quantile of `http_requests_total`?",
+    "choices": [
+      "histogram_quantile(0.99, http_requests_total_bucket)",
+      "quantile(0.99, http_requests_total)",
+      "percentile_over_time(0.99, http_requests_total)",
+      "topk(0.99, http_requests_total)"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What metric type is used to track the uptime of a server?",
+    "choices": ["Gauge", "Histogram", "Summary", "Counter"],
+    "correct": 3
+  },
+  {
+    "question": "Which Prometheus component should be used to collect metrics of short-lived jobs?",
+    "choices": ["Exporter", "Pushgateway", "Node Exporter", "Alertmanager"],
+    "correct": 1
+  },
+  {
+    "question": "What is the purpose of Prometheus `scrape_interval`?",
+    "choices": [
+      "Data retention period",
+      "Frequency of scraping targets",
+      "Query time window",
+      "Alert evaluation interval"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What does a metric_relabel_config that replaces database_errors_total with database_failures_total do?",
+    "choices": [
+      "Drops the metric",
+      "Renames the metric",
+      "Duplicates the metric",
+      "Aggregates the metric"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which component should be used to auto-discover nodes in a Kubernetes cluster?",
+    "choices": [
+      "kube-state-metrics",
+      "Service discovery",
+      "kube-proxy",
+      "Node exporter"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "For a histogram metric, what are the submetrics?",
+    "choices": [
+      "_sum, _avg, _count",
+      "__count, __bucket, __sum",
+      "_bucket, _sum, _count",
+      "_sum, _bucket, _avg"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What is the default web port of Prometheus?",
+    "choices": ["8080", "9090", "3000", "9100"],
+    "correct": 1
+  },
+  {
+    "question": "Which description annotation syntax will show \"Instance has low disk space...\"?",
+    "choices": [
+      "Instance << $Labels.instance >> has low ...",
+      "Instance {{ .Labels.instance }} has low ...",
+      "Instance {{ .Labels=instance }}",
+      "Instance {{ .instance }}"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What does the double underscore `__` before a label name signify?",
+    "choices": [
+      "Private label",
+      "Reserved label",
+      "Deprecated label",
+      "Metric name"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which query returns errors for path /auth, method POST, code 401?",
+    "choices": [
+      "http_errors_total{path=\"/auth\", method=\"POST\", code=\"401\"}",
+      "sum(http_errors_total{path=\"/auth\"})",
+      "http_errors_total{path=\"/auth\"}",
+      "http_errors_total[5m]"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What are the possible states of a Prometheus alert?",
+    "choices": [
+      "inactive, pending, firing",
+      "open, closed",
+      "ok, warn, critical",
+      "pending, active"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which component collects metrics from an instance and exposes them in Prometheus format?",
+    "choices": ["Exporter", "Alertmanager", "Pushgateway", "PromQL"],
+    "correct": 0
+  },
+  {
+    "question": "Which of the following is not a valid range selector duration?",
+    "choices": ["5m", "1h", "2mo", "24h"],
+    "correct": 2
+  },
+  {
+    "question": "Given the Alertmanager route config, what receiver does an alert with team: api & severity: critical go to?",
+    "choices": ["api-pager", "general-email", "auth-pager", "backend-pager"],
+    "correct": 1
+  },
+  {
+    "question": "Which of the following would NOT be a good Prometheus label?",
+    "choices": ["path", "status_code", "email", "method"],
+    "correct": 2
+  },
+  {
+    "question": "Which query will return a range vector?",
+    "choices": [
+      "node_boot_time_seconds",
+      "node_boot_time_seconds[5m]",
+      "node_boot_time_seconds:rate",
+      "rate(node_boot_time_seconds[5m])"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which query gives equivalent to `database_write_timeouts / ignoring(error) database_error_total`?",
+    "choices": [
+      "database_write_timeouts / on(instance, job, type) database_error_total",
+      "database_write_timeouts / database_error_total",
+      "database_write_timeouts / ignoring(type) database_error_total",
+      "database_write_timeouts + database_error_total"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What is the purpose of the 'for' attribute in a Prometheus alert rule?",
+    "choices": [
+      "How many times to repeat alert",
+      "Duration rule must be true before firing",
+      "Labels to group by",
+      "Which receiver to use"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which query sums all filesystems on the machine for `node_filesystem_size_bytes`?",
+    "choices": [
+      "sum(node_filesystem_size_bytes{instance=\"192.168.1.168:9100\"})",
+      "avg(node_filesystem_size_bytes)",
+      "sum by (mountpoint) (node_filesystem_size_bytes)",
+      "sum(node_filesystem_size_bytes)"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What are the 3 components of the Prometheus server?",
+    "choices": [
+      "retrieval node, tsdb, http server",
+      "alertmanager, pushgateway, exporter",
+      "scraper, storage, ui",
+      "promql, storage, exporter"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which selector matches metrics whose mountpoint doesn’t start with /run?",
+    "choices": [
+      "node_filesystem_avail_bytes{mountpoint!~\"/run.*\"}",
+      "node_filesystem_avail_bytes{mountpoint!~\"run\"}",
+      "node_filesystem_avail_bytes{mountpoint=~\"/run.*\"}",
+      "node_filesystem_avail_bytes{mountpoint!=\"/run\"}"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What is true about rate() vs irate()?",
+    "choices": [
+      "rate() is instantaneous, irate() averages",
+      "rate() averages, irate() last two points",
+      "They are identical",
+      "Neither is rate-related"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What is the default metrics path Prometheus scrapes?",
+    "choices": ["/metrics", "/prometheus", "/scrape", "/metrics/text"],
+    "correct": 0
+  },
+  {
+    "question": "Fix the division: which expression works?",
+    "choices": [
+      "node_filesystem_avail_bytes / ignoring(class) node_filesystem_size_bytes",
+      "node_filesystem_avail_bytes / on(class) node_filesystem_size_bytes",
+      "node_filesystem_avail_bytes / node_filesystem_size_bytes",
+      "node_filesystem_avail_bytes / without(class) node_filesystem_size_bytes"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What are the 3 components of observability?",
+    "choices": [
+      "metrics, monitoring, alerting",
+      "logging, metrics, traces",
+      "events, logs, metrics",
+      "traces, alerts, dashboards"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which query returns the active bytes on instance 10.1.1.1:9100 45m ago?",
+    "choices": [
+      "node_memory_Active_bytes{instance=\"10.1.1.1:9100\"} offset 45m",
+      "node_memory_Active_bytes offset 45m",
+      "offset node_memory_Active_bytes 45m",
+      "node_memory_Active_bytes{instance=\"10.1.1.1:9100\"}"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What metric type should be used for measuring internal temperature of a server?",
+    "choices": ["Counter", "Gauge", "Histogram", "Summary"],
+    "correct": 1
+  },
+  {
+    "question": "What is the name of the CLI utility that comes with Prometheus?",
+    "choices": ["promtool", "promcmd", "promcli", "promadmin"],
+    "correct": 0
+  },
+  {
+    "question": "How can Alertmanager prevent notifications temporarily?",
+    "choices": [
+      "By muting alerts",
+      "By configuring a silence",
+      "By disabling receivers",
+      "By changing group_wait"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What does `honor_labels: true` do in scrape configs for Pushgateway?",
+    "choices": [
+      "Overrides target labels",
+      "Allows push metrics to supply instance/job labels",
+      "Blocks relabeling",
+      "Enables label hierarchy"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Given Alertmanager config, what receiver receives alerts with team: backend & severity: critical?",
+    "choices": [
+      "frontend-pager",
+      "backend-pager",
+      "auth-pager",
+      "general-email"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which would make for a poor SLI?",
+    "choices": [
+      "Request failures",
+      "High disk utilization",
+      "Error rate",
+      "Latency"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Which is not a valid way to reload Prometheus config?",
+    "choices": [
+      "SIGHUP",
+      "POST to /-/reload",
+      "promtool config reload",
+      "Restart"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Which of these is not tracked in a span within a trace?",
+    "choices": ["Latency", "HTTP status", "Complexity", "Trace ID"],
+    "correct": 2
+  },
+  {
+    "question": "What is an appropriate metric name for used memory in Redis exporter?",
+    "choices": [
+      "redis_mem_used_bytes",
+      "redis.memory.used",
+      "redisUsedMemory",
+      "redis_mem_bytes_used"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What CLI command validates Prometheus configuration?",
+    "choices": [
+      "promtool check config",
+      "promtool validate",
+      "promtool test config",
+      "promtool config check"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which query returns targets with more than 50 arp entries?",
+    "choices": [
+      "node_arp_entries{job=\"node\"} > 50",
+      "arp_entries > 50",
+      "node_arp_entries > 50",
+      "NodeARPEntries > 50"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What data type do Prometheus metric values use?",
+    "choices": ["32-bit floats", "64-bit floats", "64-bit integers", "Strings"],
+    "correct": 1
+  },
+  {
+    "question": "Which query excludes rear fan speeds for node_fan_speed_rpm?",
+    "choices": [
+      "node_fan_speed_rpm{location!=\"rear\"}",
+      "node_fan_speed_rpm{fan!=\"rear\"}",
+      "node_fan_speed_rpm{rear!=\"true\"}",
+      "node_fan_speed_rpm{location!=rear}"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "How long will Alertmanager wait before firing a new notification based on group_interval?",
+    "choices": ["60s", "15m", "12h", "5m"],
+    "correct": 1
+  },
+  {
+    "question": "The purpose of Prometheus scrape_interval is to define:",
+    "choices": [
+      "How frequently to scrape a target",
+      "How long to keep data",
+      "Alert evaluation window",
+      "Query interval"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which query returns total requests per path for given http_requests list?",
+    "choices": [
+      "sum by(path) (http_requests)",
+      "count by(path) (http_requests)",
+      "http_requests by path",
+      "rate(http_requests[5m])"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which scrape config property modifies metric path for /monitoring/stats?",
+    "choices": [
+      "metrics_path: \"/monitoring/stats\"",
+      "path: \"/monitoring/stats\"",
+      "endpoint: \"/monitoring/stats\"",
+      "export_path: \"/monitoring/stats\""
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which receiver will handle an alert with team: frontend given the config?",
+    "choices": ["kodekloud-pager", "apple", "general", "frontend"],
+    "correct": 2
+  },
+  {
+    "question": "Which is Prometheus's built-in dashboarding/visualization feature?",
+    "choices": ["Grafana", "Console templates", "Dashboards", "PromDash"],
+    "correct": 1
+  },
+  {
+    "question": "What command validates Prometheus configuration?",
+    "choices": [
+      "promtool check config prometheus.yml",
+      "promtool config check",
+      "promtool validate config",
+      "promtool test config"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "What type of data should Prometheus monitor?",
+    "choices": ["Numeric", "Text", "JSON", "Binary"],
+    "correct": 0
+  },
+  {
+    "question": "What is the default port that Prometheus listens on?",
+    "choices": ["8080", "9090", "3000", "9100"],
+    "correct": 1
+  },
+  {
+    "question": "Which query returns number of partitions over a 2-hour range for kafka_topic_partition_replicas?",
+    "choices": [
+      "kafka_topic_partition_replicas[2h]",
+      "kafka_topic_partition_replicas",
+      "kafka_topic_partition_replicas through 2h",
+      "kafka_topic_partition_replicas over 2h"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which query returns path/method/error with code 401?",
+    "choices": [
+      "http_errors_total{path=\"/auth\", method=\"POST\", code=\"401\"}",
+      "sum(http_errors_total{path=\"/auth\"})",
+      "http_errors_total{error=\"401\"}",
+      "http_errors_total[5m]"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which description will print redis server instance is down?",
+    "choices": [
+      "redis server {{.Labels.instance}} is down!",
+      "redis server << $Labels.instance >> is down!",
+      "redis server {.Labels.instance} is down!",
+      "redis server .Labels.instance is down!"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Which of the following is Prometheus primarily designed for?",
+    "choices": [
+      "Log aggregation",
+      "Metrics monitoring",
+      "Distributed tracing",
+      "Container orchestration"
+    ],
+    "correct": 1,
+    "section": "Prometheus Basics and Setup",
+    "explanation": "Prometheus is primarily designed to monitor and store time-series metrics."
+  },
+  {
+    "question": "What type of database does Prometheus use?",
+    "choices": [
+      "Relational Database",
+      "NoSQL Document Store",
+      "Time-series Database",
+      "Object Storage"
+    ],
+    "correct": 2,
+    "section": "Prometheus Basics and Setup",
+    "explanation": "Prometheus uses a specialized time-series database optimized for storing timestamped data."
+  },
+  {
+    "question": "How does Prometheus collect data from its targets?",
+    "choices": [
+      "By querying them over SSH",
+      "By receiving metrics from targets through a push model",
+      "By scraping HTTP endpoints at regular intervals",
+      "By using a Kafka messaging queue"
+    ],
+    "correct": 2,
+    "section": "Prometheus Basics and Setup",
+    "explanation": "Prometheus follows a pull-based model, periodically scraping metrics from targets that expose them via HTTP."
+  },
+  {
+    "question": "Which configuration file format does Prometheus use?",
+    "choices": ["JSON", "YAML", "XML", "INI"],
+    "correct": 1,
+    "section": "Prometheus Basics and Setup",
+    "explanation": "Prometheus configuration files are written in YAML format."
+  },
+  {
+    "question": "Which of the following is NOT a core component of Prometheus?",
+    "choices": ["Alertmanager", "PromQL", "Grafana", "Exporters"],
+    "correct": 2,
+    "section": "Prometheus Basics and Setup",
+    "explanation": "Grafana is an external visualization tool; core Prometheus components include Alertmanager, PromQL, and Exporters."
+  },
+  {
+    "question": "Which PromQL function calculates the average of a time series over a specified time range?",
+    "choices": [
+      "sum_over_time()",
+      "avg_over_time()",
+      "rate()",
+      "count_over_time()"
+    ],
+    "correct": 1,
+    "section": "PromQL (Prometheus Query Language)",
+    "explanation": "The avg_over_time() function calculates the average value of a time series over a specified period."
+  },
+  {
+    "question": "What does the following query return: up == 0?",
+    "choices": [
+      "All targets that are up",
+      "All targets that are down",
+      "The count of up targets",
+      "None of the above"
+    ],
+    "correct": 1,
+    "section": "PromQL (Prometheus Query Language)",
+    "explanation": "The query up == 0 returns time series where the up metric equals 0, indicating that those targets are down."
+  },
+  {
+    "question": "What is the purpose of the rate() function in Prometheus?",
+    "choices": [
+      "To sum all samples over a time range",
+      "To calculate the per-second rate of increase of a counter",
+      "To calculate the total value of a counter",
+      "To return the raw counter values"
+    ],
+    "correct": 1,
+    "section": "PromQL (Prometheus Query Language)",
+    "explanation": "The rate() function computes the per-second average increase of a counter over a given time window."
+  },
+  {
+    "question": "What will the query node_cpu_seconds_total{job=\"node\"} return?",
+    "choices": [
+      "All time series related to node CPU usage",
+      "CPU usage for a specific node",
+      "The average CPU usage across all nodes",
+      "None of the above"
+    ],
+    "correct": 0,
+    "section": "PromQL (Prometheus Query Language)",
+    "explanation": "The query selects all time series for the metric node_cpu_seconds_total with the label job=\"node\", covering all related CPU usage data."
+  },
+  {
+    "question": "Which PromQL operator is used to match series labels?",
+    "choices": ["==", "@", "=~", "<>"],
+    "correct": 2,
+    "section": "PromQL (Prometheus Query Language)",
+    "explanation": "The =~ operator is used for regular expression matching in Prometheus label selectors."
+  },
+  {
+    "question": "Which of the following is a widely used Prometheus exporter for system metrics?",
+    "choices": [
+      "Node Exporter",
+      "Blackbox Exporter",
+      "Pushgateway",
+      "Alertmanager"
+    ],
+    "correct": 0,
+    "section": "Exporters and Targets",
+    "explanation": "Node Exporter is widely used to expose hardware and OS-level metrics from Linux/Unix systems."
+  },
+  {
+    "question": "What type of endpoint does Prometheus scrape by default?",
+    "choices": ["/metrics", "/data", "/prometheus", "/status"],
+    "correct": 0,
+    "section": "Exporters and Targets",
+    "explanation": "By default, Prometheus scrapes targets at the /metrics endpoint."
+  },
+  {
+    "question": "Which of the following best describes an exporter in Prometheus?",
+    "choices": [
+      "A service that pushes data to Prometheus",
+      "A tool that exposes metrics in a Prometheus-compatible format",
+      "A storage backend for Prometheus",
+      "A visualization tool"
+    ],
+    "correct": 1,
+    "section": "Exporters and Targets",
+    "explanation": "An exporter gathers metrics from a system or application and makes them available in a format Prometheus can scrape."
+  },
+  {
+    "question": "What is the function of the Blackbox Exporter?",
+    "choices": [
+      "It exports application logs to Prometheus",
+      "It monitors endpoint health by performing HTTP, DNS, or TCP checks",
+      "It exports node metrics such as CPU and memory usage",
+      "It manages Prometheus alert rules"
+    ],
+    "correct": 1,
+    "section": "Exporters and Targets",
+    "explanation": "The Blackbox Exporter is designed to probe endpoints and report on their availability and responsiveness."
+  },
+  {
+    "question": "What does the job label typically indicate in Prometheus?",
+    "choices": [
+      "The name of the server where metrics are stored",
+      "The role of a target or group of targets",
+      "The version of Prometheus running",
+      "The current alert status"
+    ],
+    "correct": 1,
+    "section": "Exporters and Targets",
+    "explanation": "The job label typically groups targets by their function or role in the infrastructure."
+  },
+  {
+    "question": "Which component handles alerts generated by Prometheus?",
+    "choices": [
+      "Node Exporter",
+      "Alertmanager",
+      "Blackbox Exporter",
+      "Prometheus Server"
+    ],
+    "correct": 1,
+    "section": "Alerting and Alertmanager",
+    "explanation": "Alertmanager handles alerts generated by Prometheus, managing notification routing and silencing."
+  },
+  {
+    "question": "Which of the following is NOT an alert routing configuration in Alertmanager?",
+    "choices": [
+      "Inhibit rules",
+      "Routing tree",
+      "Notification templates",
+      "Prometheus rules"
+    ],
+    "correct": 3,
+    "section": "Alerting and Alertmanager",
+    "explanation": "Alert routing in Alertmanager involves inhibit rules, routing trees, and notification templates; Prometheus rules define alert conditions, not routing configurations."
+  },
+  {
+    "question": "What is a common notification integration for Alertmanager?",
+    "choices": ["Google Sheets", "Slack", "Hadoop", "Terraform"],
+    "correct": 1,
+    "section": "Alerting and Alertmanager",
+    "explanation": "Slack is a common integration for Alertmanager notifications, along with other channels like email or PagerDuty."
+  },
+  {
+    "question": "What will happen if no alert rules are defined in Prometheus?",
+    "choices": [
+      "Prometheus will stop collecting metrics",
+      "No alerts will be generated",
+      "Prometheus will log an error",
+      "All targets will be marked as down"
+    ],
+    "correct": 1,
+    "section": "Alerting and Alertmanager",
+    "explanation": "If no alert rules are defined, Prometheus will still collect metrics but won’t generate any alerts."
+  },
+  {
+    "question": "Which file contains the alert rules for Prometheus?",
+    "choices": [
+      "alerts.conf",
+      "alert_rules.yaml",
+      "prometheus.rules.yml",
+      "alertmanager.config.yaml"
+    ],
+    "correct": 2,
+    "section": "Alerting and Alertmanager",
+    "explanation": "Alert rules are typically stored in files like prometheus.rules.yml (naming may vary, but this is the option provided)."
+  }
+]
