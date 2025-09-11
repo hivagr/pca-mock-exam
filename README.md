@@ -3,7 +3,9 @@
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-![pca](./app/public/pca-logo.png)
+<p align="center" width="100%">
+    <img width="35%" src="./app/public/pca-logo.png">
+</p>
 
 This repository provides a single-page web app for practicing Prometheus Certified Associate (PCA) exam questions. The app is built with Node.js and serves a quiz interface with multiple-choice questions.
 
@@ -56,7 +58,7 @@ docker build -t pca-mock-exam:latest .
 ### Run the container (port 3000)
 
 ```sh
-docker run --name pca-mock-exam -p 3000:3000 pca-mock-exam:latest
+docker run --rm -p 3000:3000 pca-mock-exam:latest
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to start practicing.
