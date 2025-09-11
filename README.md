@@ -39,6 +39,14 @@ pca-mock-exam/
 
 ## 🛠️ Usage
 
+### Run the pre-build container
+
+```sh
+docker run --name pca-mock-exam -p 3000:3000 hiddevg/pca-mock-exam:latest
+```
+
+## 💻 Development usage
+
 ### Build the Docker image
 
 ```sh
