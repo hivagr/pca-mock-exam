@@ -15,11 +15,6 @@
     "correct": 1
   },
   {
-    "question": "Based on the Alertmanager config, how long will you need to wait to see an alert again after it's triggered?",
-    "choices": ["10s", "5m", "4h", "12h"],
-    "correct": 2
-  },
-  {
     "question": "Which query will get all time series for metric `node_disk_read_bytes_total` for job=web and job=node?",
     "choices": [
       "node_disk_read_bytes_total{job=\"web,node\"}",
@@ -33,11 +28,6 @@
     "question": "What type of database does Prometheus use?",
     "choices": ["Relational", "Document", "Time Series", "Graph"],
     "correct": 2
-  },
-  {
-    "question": "Given the alertmanager config and generated alerts, how many total notifications are sent out?",
-    "choices": ["2", "3", "4", "5"],
-    "correct": 1
   },
   {
     "question": "What is the Prometheus client library used for?",
@@ -80,14 +70,10 @@
     "correct": 0
   },
   {
-    "question": "What configuration will prevent Prometheus from scraping targets with label team: frontend?",
-    "choices": [
-      "relabel_configs drop source_labels team regex frontend",
-      "metric_relabel_configs drop source_labels team regex frontend",
-      "relabel_configs drop match team frontend",
-      "relabel_configs drop source_labels frontend regex team"
-    ],
-    "correct": 0
+    "question": "What is the default data retention period in Prometheus?",
+    "choices": ["7 days", "15 days", "30 days", "90 days"],
+    "correct": 1,
+    "explanation": "By default, Prometheus retains data for 15 days, though this can be configured."
   },
   {
     "question": "Where should alerting rules be defined?",
@@ -213,11 +199,6 @@
     "question": "Which of the following is not a valid range selector duration?",
     "choices": ["5m", "1h", "2mo", "24h"],
     "correct": 2
-  },
-  {
-    "question": "Given the Alertmanager route config, what receiver does an alert with team: api & severity: critical go to?",
-    "choices": ["api-pager", "general-email", "auth-pager", "backend-pager"],
-    "correct": 1
   },
   {
     "question": "Which of the following would NOT be a good Prometheus label?",
@@ -360,14 +341,15 @@
     "correct": 1
   },
   {
-    "question": "Given Alertmanager config, what receiver receives alerts with team: backend & severity: critical?",
+    "question": "What format does Prometheus use to store data on disk?",
     "choices": [
-      "frontend-pager",
-      "backend-pager",
-      "auth-pager",
-      "general-email"
+      "Relational database (SQL)",
+      "Custom time-series database format",
+      "Flat JSON files",
+      "Elasticsearch indices"
     ],
-    "correct": 1
+    "correct": 1,
+    "explanation": "Prometheus stores data in a custom TSDB optimized for time-series metrics."
   },
   {
     "question": "Which would make for a poor SLI?",
@@ -430,21 +412,6 @@
     "correct": 1
   },
   {
-    "question": "Which query excludes rear fan speeds for node_fan_speed_rpm?",
-    "choices": [
-      "node_fan_speed_rpm{location!=\"rear\"}",
-      "node_fan_speed_rpm{fan!=\"rear\"}",
-      "node_fan_speed_rpm{rear!=\"true\"}",
-      "node_fan_speed_rpm{location!=rear}"
-    ],
-    "correct": 0
-  },
-  {
-    "question": "How long will Alertmanager wait before firing a new notification based on group_interval?",
-    "choices": ["60s", "15m", "12h", "5m"],
-    "correct": 1
-  },
-  {
     "question": "The purpose of Prometheus scrape_interval is to define:",
     "choices": [
       "How frequently to scrape a target",
@@ -473,11 +440,6 @@
       "export_path: \"/monitoring/stats\""
     ],
     "correct": 0
-  },
-  {
-    "question": "Which receiver will handle an alert with team: frontend given the config?",
-    "choices": ["kodekloud-pager", "apple", "general", "frontend"],
-    "correct": 2
   },
   {
     "question": "Which is Prometheus's built-in dashboarding/visualization feature?",
@@ -511,16 +473,6 @@
       "kafka_topic_partition_replicas",
       "kafka_topic_partition_replicas through 2h",
       "kafka_topic_partition_replicas over 2h"
-    ],
-    "correct": 0
-  },
-  {
-    "question": "Which query returns path/method/error with code 401?",
-    "choices": [
-      "http_errors_total{path=\"/auth\", method=\"POST\", code=\"401\"}",
-      "sum(http_errors_total{path=\"/auth\"})",
-      "http_errors_total{error=\"401\"}",
-      "http_errors_total[5m]"
     ],
     "correct": 0
   },
@@ -748,5 +700,78 @@
     "correct": 2,
     "section": "Alerting and Alertmanager",
     "explanation": "Alert rules are typically stored in files like prometheus.rules.yml (naming may vary, but this is the option provided)."
+  },
+  {
+    "question": "Which component of Prometheus is responsible for scraping metrics?",
+    "choices": ["PromQL", "Alertmanager", "Prometheus server", "Exporters"],
+    "correct": 2,
+    "explanation": "The Prometheus server scrapes metrics from targets, stores them in the time-series database, and processes queries."
+  },
+  {
+    "question": "Which of the following is TRUE about exporters in Prometheus?",
+    "choices": [
+      "They store metrics in a database",
+      "They expose metrics in a Prometheus-compatible format",
+      "They send alerts directly to Alertmanager",
+      "They are used only with Kubernetes"
+    ],
+    "correct": 1,
+    "explanation": "Exporters translate metrics from applications and systems into a Prometheus-readable format (usually via HTTP endpoints)."
+  },
+  {
+    "question": "Which of the following is NOT a valid Prometheus metric type?",
+    "choices": ["Counter", "Gauge", "Histogram", "Vector"],
+    "correct": 3,
+    "explanation": "Prometheus metric types include Counter, Gauge, Histogram, and Summary. 'Vector' is a data type in PromQL, not a metric type."
+  },
+  {
+    "question": "What type of data does Prometheus store?",
+    "choices": [
+      "Unstructured text logs",
+      "Time-series metrics",
+      "Configuration files",
+      "Application source code"
+    ],
+    "correct": 1,
+    "explanation": "Prometheus stores metrics as time-series data, identified by metric names and labels."
+  },
+  {
+    "question": "What does a Prometheus counter metric represent?",
+    "choices": [
+      "A value that can increase or decrease",
+      "A cumulative value that only increases",
+      "A percentage between 0 and 100",
+      "A randomly sampled value"
+    ],
+    "correct": 1,
+    "explanation": "Counters are cumulative metrics that only increase (or reset to zero)."
+  },
+  {
+    "question": "Which PromQL function would you use to calculate the 95th percentile from a histogram?",
+    "choices": ["rate()", "quantile()", "histogram_quantile()", "percentile()"],
+    "correct": 2,
+    "explanation": "The `histogram_quantile()` function is used to calculate quantiles (e.g., 95th percentile) from histogram buckets."
+  },
+  {
+    "question": "Which of the following is a limitation of Prometheus?",
+    "choices": [
+      "It cannot scrape metrics from Kubernetes",
+      "It does not support high availability natively",
+      "It requires a commercial license",
+      "It cannot store time-series data"
+    ],
+    "correct": 1,
+    "explanation": "Prometheus does not support HA clustering out of the box; redundancy is usually handled by running multiple instances."
+  },
+  {
+    "question": "Which flag would you use to configure Prometheus to retain data for 30 days?",
+    "choices": [
+      "--storage.tsdb.retention=30d",
+      "--retention.time=30d",
+      "--data-retain=30d",
+      "--keep-metrics=30d"
+    ],
+    "correct": 0,
+    "explanation": "The `--storage.tsdb.retention` flag controls how long Prometheus keeps time-series data."
   }
 ]
