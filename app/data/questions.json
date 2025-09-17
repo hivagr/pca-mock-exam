@@ -773,5 +773,24 @@
     ],
     "correct": 0,
     "explanation": "The `--storage.tsdb.retention` flag controls how long Prometheus keeps time-series data."
+  },
+  {
+    "question": "Which Prometheus metric type is best suited to use for building a heatmap in Grafana?",
+    "choices": ["Counter", "Histogram", "Gauge", "Summary"],
+    "correct": 1,
+    "section": "Alerting & Dashboarding",
+    "explanation": "Grafana heatmaps require bucketed data, which Prometheus histograms provide through their `_bucket` metrics. Counters, gauges, and summaries do not directly provide the bucketed values needed for heatmap visualization."
+  },
+  {
+    "question": "What must be enabled for the Prometheus endpoint http://<ip>:9090/-/reload to work?",
+    "choices": [
+      "Nothing, it works by default",
+      "--enable-reload-config",
+      "--web.enable-lifecycle",
+      "Add reload=true in the Prometheus config file"
+    ],
+    "correct": 2,
+    "section": "Prometheus Fundamentals",
+    "explanation": "The `/-/reload` endpoint only works when Prometheus is started with the `--web.enable-lifecycle` flag."
   }
 ]
