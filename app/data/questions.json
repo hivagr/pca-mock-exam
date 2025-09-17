@@ -792,5 +792,43 @@
     "correct": 2,
     "section": "Prometheus Fundamentals",
     "explanation": "The `/-/reload` endpoint only works when Prometheus is started with the `--web.enable-lifecycle` flag."
+  },
+  {
+    "question": "Which PromQL function would you use to calculate the per-second increase of a counter metric?",
+    "choices": ["sum()", "rate()", "avg_over_time()", "increase()"],
+    "correct": 1,
+    "section": "PromQL",
+    "explanation": "The `rate()` function calculates the per-second average increase of a counter over a specified range. It's commonly used for counters like `http_requests_total`."
+  },
+  {
+    "question": "Which PromQL function would you use to calculate the 95th percentile latency from a histogram?",
+    "choices": [
+      "avg_over_time()",
+      "histogram_quantile()",
+      "quantile_over_time()",
+      "topk()"
+    ],
+    "correct": 1,
+    "section": "PromQL",
+    "explanation": "The `histogram_quantile()` function calculates quantiles (e.g., 95th percentile) from histogram buckets like `http_request_duration_seconds_bucket`."
+  },
+  {
+    "question": "What does the PromQL query `up == 0` indicate?",
+    "choices": [
+      "All targets are healthy",
+      "Some targets are down",
+      "All metrics are missing",
+      "Prometheus server is restarting"
+    ],
+    "correct": 1,
+    "section": "PromQL",
+    "explanation": "The `up` metric indicates whether a target is reachable (1) or not (0). A condition `up == 0` means some targets are unreachable/down."
+  },
+  {
+    "question": "Which operator would you use in PromQL to combine two time series by their labels?",
+    "choices": ["union", "by", "join", "on"],
+    "correct": 3,
+    "section": "PromQL",
+    "explanation": "The `on()` operator specifies which labels to match when combining series from different queries, often used with arithmetic or comparison operators."
   }
 ]
