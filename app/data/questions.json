@@ -830,5 +830,17 @@
     "correct": 3,
     "section": "PromQL",
     "explanation": "The `on()` operator specifies which labels to match when combining series from different queries, often used with arithmetic or comparison operators."
+  },
+  {
+    "question": "What is the primary role of a Prometheus Registry?",
+    "choices": [
+      "To visualize metrics in a dashboard",
+      "To register and manage custom metrics before exposure",
+      "To store time-series data over long periods",
+      "To collect logs and traces from distributed systems"
+    ],
+    "correct": 1,
+    "section": "Prometheus Fundamentals",
+    "explanation": "The Prometheus Registry is responsible for managing and collecting all the metrics from different collectors. It registers metrics like counters, gauges, and histograms before they are exposed to Prometheus through the HTTP endpoint."
   }
 ]
