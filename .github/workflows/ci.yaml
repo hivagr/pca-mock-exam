@@ -21,3 +21,7 @@ jobs:
       - name: Format check
         run: npx prettier --check .
         working-directory: ./app
+      - name: Scan current project
+        uses: anchore/scan-action@v7
+        with:
+          path: "."

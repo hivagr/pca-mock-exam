@@ -27,3 +27,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: hiddevg/pca-mock-exam:${{ env.TAG }},hiddevg/pca-mock-exam:latest
+      - name: Scan image
+        uses: anchore/scan-action@v7
+        with:
+          image: "hiddevg/pca-mock-exam:${{ env.TAG }}"
