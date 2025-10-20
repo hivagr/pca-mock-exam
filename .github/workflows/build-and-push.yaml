@@ -1,4 +1,8 @@
-name: cd
+name: build-and-push
+
+env:
+  DOCKERHUB_USERNAME: hiddevg
+  IMAGE_NAME: pca-mock-exam
 
 on:
   push:
@@ -7,6 +11,10 @@ on:
 
 jobs:
   build-and-push:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
@@ -14,20 +22,34 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       - name: Extract tag version
         id: get_tag
         run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-      - name: Build and push
+
+      - name: Build and push container image
         uses: docker/build-push-action@v6
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: hiddevg/pca-mock-exam:${{ env.TAG }},hiddevg/pca-mock-exam:latest
+          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }},${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
       - name: Scan image
         uses: anchore/scan-action@v7
+        id: scan
         with:
-          image: "hiddevg/pca-mock-exam:${{ env.TAG }}"
+          image: "${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}"
+
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      - name: Inspect action SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}
