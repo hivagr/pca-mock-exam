@@ -16,4 +16,4 @@ spec:
   type: website
   lifecycle: production
   owner: infra
-  system: mock-exams
+  system: education
