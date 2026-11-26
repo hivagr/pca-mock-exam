@@ -32,16 +32,3 @@ jobs:
         uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: Dockerfile
-
-      - id: kubescape
-        uses: kubescape/github-action@main
-        continue-on-error: true
-        with:
-          format: sarif
-          outputFile: results
-
-      - name: Upload Kubescape scan results to Github Code Scanning
-        if: steps.kubescape.outcome == 'success'
-        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
-        with:
-          sarif_file: results.sarif
